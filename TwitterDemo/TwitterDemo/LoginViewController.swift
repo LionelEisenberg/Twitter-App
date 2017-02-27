@@ -18,10 +18,10 @@ class LoginViewController: UIViewController {
         twitterClient?.fetchRequestToken(withPath: "oauth/request_token", method: "GET", callbackURL: nil, scope: nil, success: { (requestToken: BDBOAuth1Credential?) -> Void in
             print("Got request Token")
             
-            print("\(requestToken?.token)")
-            let url = URL(string: "https://api.twitter.com/oauth/authorize?auth_token=\(requestToken?.token)")
-            UIApplication.shared.openURL(url!)
-            
+            let RToken = "\(requestToken?.token)"
+            print("\(RToken)")
+            let url = URL(string: "https://api.twitter.com/oauth/authorize?oauth_token=\(RToken)")
+            UIApplication.shared.open(url! as URL, options: [:], completionHandler: nil)
         }, failure: { (error: Error?) in
             print("error")
         })
